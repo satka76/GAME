@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <title>Azeri Casino • Mini Oyunlar</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b1220" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <img src="assets/bg.png" class="bg-img" alt="bg">
+  <!-- fixed language switcher -->
+  <div class="lang-fixed">
+    <img src="assets/flag-az.png" id="langAZ" class="flag-img" alt="AZ">
+    <img src="assets/flag-ru.png" id="langRU" class="flag-img" alt="RU">
+  </div>
+  <audio id="bgm" src="assets/bgm.wav" loop></audio>
+  <button id="muteBtn" class="mute-btn" aria-label="toggle sound">🔊</button>
+
+  <div id="app">
+    <header class="header glass">
+      <button id="backBtn" class="link" hidden>← <span data-i18n="back">Geri</span></button>
+      <h1 id="appTitle" data-i18n="app_title">Mini Oyunlar • Azeri Casino Stili</h1>
+    </header>
+
+    <section class="topbar glass">
+      <div><span data-i18n="coins_label">Sikkələr</span>: <b id="coins">100</b></div>
+      <div class="muted" data-i18n="responsible_short">Play safe • 18+</div>
+    </section>
+
+    <main id="screenMenu" class="screen">
+      <p class="muted" data-i18n="pick_game">Oyun seçin</p>
+      <div class="card clickable glass" data-next="slots">🎰 <span data-i18n="slots">Slot maşını</span> <span class="arrow">→</span></div>
+      <div class="card clickable glass" data-next="dice">🎲 <span data-i18n="dice">Zər atma</span> <span class="arrow">→</span></div>
+      <div class="card clickable glass" data-next="cards">🃏 <span data-i18n="cards">Kart aç</span> <span class="arrow">→</span></div>
+      <div class="card glass"><span data-i18n="cost_per_play">Oyun dəyəri: 5</span></div>
+    </main>
+
+    <main id="screenSlots" class="screen hidden">
+      <div class="card center glass">
+        <div class="reels">
+          <div class="reel" id="reel1">❔</div>
+          <div class="reel" id="reel2">❔</div>
+          <div class="reel" id="reel3">❔</div>
+        </div>
+        <button class="btn" id="spinBtn" data-i18n="spin">Fırlat</button>
+        <div id="slotsMsg" class="msg"></div>
+      </div>
+    </main>
+
+    <main id="screenDice" class="screen hidden">
+      <div class="card glass">
+        <div class="muted" data-i18n="bet_place">Bahis qoy: 5</div>
+        <div class="seg">
+          <button class="toggle" id="pickHigher" data-selected="true" data-i18n="choose_higher">Yuxarı gələcək</button>
+          <button class="toggle" id="pickLower" data-i18n="choose_lower">Aşağı gələcək</button>
+        </div>
+        <button class="btn" id="rollBtn" data-i18n="roll">At</button>
+        <div id="diceResult" class="msg"></div>
+      </div>
+    </main>
+
+    <main id="screenCards" class="screen hidden">
+      <div class="card glass">
+        <div class="muted" data-i18n="pick_a_card">Kart seçin</div>
+        <div class="cards">
+          <button class="cardx" data-idx="0">🂠</button>
+          <button class="cardx" data-idx="1">🂠</button>
+          <button class="cardx" data-idx="2">🂠</button>
+        </div>
+        <div id="cardsMsg" class="msg"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Dicebet Modal (centered CTA, closable) -->
+  <div id="adModal" class="center-modal hidden" role="dialog" aria-modal="true">
+    <div class="center-card">
+      <h3 class="title" data-i18n="ad_title_big">Təbrik edirik!</h3>
+      <p class="muted" data-i18n="ad_copy_center">Sizi burada gözləyirik — Dicebet.</p>
+      <a class="btn big" href="https://dicebet.com" target="_blank" rel="noopener" data-i18n="ad_go_center">Buraya keç</a>
+      <button class="link" id="closeAd" data-i18n="ad_close">Bağla</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+      });
+    }
+  </script>
+</body>
+</html>
