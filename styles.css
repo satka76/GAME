@@ -34,3 +34,7 @@ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;backgrou
 .center-modal{position:fixed;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.7);z-index:20}
 .center-card{background:#141b2d;max-width:460px;width:90%;padding:20px;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,.45);text-align:center;border:1px solid rgba(255,255,255,.06)}
 .center-card .title{margin-top:0;margin-bottom:8px;font-size:22px}
+
+.center-backdrop{position:absolute;inset:0;background:rgba(0,0,0,.7)}
+.center-modal{position:fixed;inset:0;display:grid;place-items:center;z-index:20}
+.center-modal .center-card{position:relative;z-index:1}

@@ -146,7 +146,13 @@ $$('.cardx').forEach(btn => btn.onclick = () => {
 });
 
 // Modal
-$('#closeAd').onclick = () => $('#adModal').classList.add('hidden');
+
+// --- close modal helpers
+function hideAd(){ $('#adModal').classList.add('hidden'); }
+$('#closeAd').onclick = hideAd;
+const backdrop = $('#adBackdrop'); if (backdrop) backdrop.onclick = hideAd;
+window.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ hideAd(); } });
+
 
 // Helpers
 function wait(ms){ return new Promise(res=>setTimeout(res, ms)); }
